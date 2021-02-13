@@ -5,7 +5,7 @@ namespace PrimeNumberCalc
 {
 	public static class PrimeNumberUtils
 	{ 
-		public static bool IsPrime(uint numberToTest)
+		public static bool IsPrime(ulong numberToTest)
 		{
 			if (numberToTest <= 1)
 			{
@@ -36,63 +36,63 @@ namespace PrimeNumberCalc
 			return true;
 		}
 
-		public static Dictionary<uint, uint> GetPrimeFactorization(uint n)
-		{
-			var factors = new Dictionary<uint, uint>();
+        public static Dictionary<ulong, uint> GetPrimeFactorization(ulong n)
+        {
+            var factors = new Dictionary<ulong, uint>();
 
-			if (IsPrime(n))
-			{
-				factors.Add(n, 1);
-			}
-			else
-			{
-				uint factor = 2;
-				var result = n;
-				uint pow = 1;
+            if (IsPrime(n))
+            {
+                factors.Add(n, 1);
+            }
+            else
+            {
+                ulong factor = 2;
+                var result = n;
+                uint pow = 1;
 
-				while (true)
-				{
-					if (result % factor == 0)
-					{
-						result /= factor;
-						if (!factors.TryAdd(factor, pow))
-						{
-							factors[factor] = pow;
-						}
+                while (true)
+                {
+                    if (result % factor == 0)
+                    {
+                        result /= factor;
+                        if (!factors.TryAdd(factor, pow))
+                        {
+                            factors[factor] = pow;
+                        }
 
-						if (IsPrime(result))
-						{
-							if (!factors.ContainsKey(result))
-							{
-								factors.Add(result, 1);
-							}
-							else
-							{
-								factors[result] = factors.GetValueOrDefault(result) + 1;
-							}
-							break;
-						}
+                        if (IsPrime(result))
+                        {
+                            if (!factors.ContainsKey(result))
+                            {
+                                factors.Add(result, 1);
+                            }
+                            else
+                            {
+                                factors[result] = factors.GetValueOrDefault(result) + 1;
+                            }
+                            break;
+                        }
 
-						pow++;
-					}
-					else
-					{
-						pow = 1;
-						factor = GetNextPrime(factor);
-					}
-				}
-			}
+                        pow++;
+                    }
+                    else
+                    {
+                        pow = 1;
+                        factor = GetNextPrime(factor);
+                    }
+                }
+            }
 
-			return factors;
-		}
-
-		private static uint GetNextPrime(uint n)
-		{
-			do
-			{
-				n++;
-			} while (!IsPrime(n));
-			return n;
-		}
+            return factors;
+        }
+        
+        static ulong GetNextPrime(ulong n)
+        {
+	        do
+	        {
+		        n++;
+	        } while (!IsPrime(n));
+	        return n;
+        }
 	}
 }
