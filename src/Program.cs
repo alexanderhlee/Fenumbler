@@ -10,7 +10,7 @@ namespace PrimeNumberCalc
         {
             while (true)
             {
-                Console.WriteLine($"{Environment.NewLine}Is your number prime? (any non positive number to EXIT)");
+                Console.WriteLine($"{Environment.NewLine}Is your number prime? Greater than 1 is valid. Anything else to EXIT");
                 var test = Console.ReadLine();
 
                 if (ulong.TryParse(test, out var result))
@@ -25,7 +25,7 @@ namespace PrimeNumberCalc
                         if (!isPrime)
                         {
                             var factors = GetPrimeFactorization(result);
-                            //Console.WriteLine($"{Environment.NewLine}The prime factorization of {result} is");
+
                             foreach (var item in factors)
                             {
                                 Console.WriteLine($" > {item.Key} ^ {item.Value}");
