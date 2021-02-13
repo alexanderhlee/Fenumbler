@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{6EEED8C7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeNumberCalc", "src\PrimeNumberCalc.csproj", "{E3D1576C-12CA-4D04-8CA5-33BD159DD00C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests.csproj", "{08B2AE8A-7E86-4E7B-8ABC-4FDB75E53460}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeNumberCalcTests", "tests\PrimeNumberCalcTests.csproj", "{08B2AE8A-7E86-4E7B-8ABC-4FDB75E53460}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
