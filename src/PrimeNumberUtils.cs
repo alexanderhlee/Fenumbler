@@ -39,7 +39,7 @@ namespace PrimeNumberCalc
         public static Dictionary<ulong, uint> GetPrimeFactorization(ulong n)
         {
             var factors = new Dictionary<ulong, uint>();
-
+        
             if (IsPrime(n))
             {
                 factors.Add(n, 1);
@@ -49,7 +49,7 @@ namespace PrimeNumberCalc
                 ulong factor = 2;
                 var result = n;
                 uint pow = 1;
-
+        
                 while (true)
                 {
                     if (result % factor == 0)
@@ -59,7 +59,7 @@ namespace PrimeNumberCalc
                         {
                             factors[factor] = pow;
                         }
-
+        
                         if (IsPrime(result))
                         {
                             if (!factors.ContainsKey(result))
@@ -72,7 +72,7 @@ namespace PrimeNumberCalc
                             }
                             break;
                         }
-
+        
                         pow++;
                     }
                     else
@@ -82,11 +82,11 @@ namespace PrimeNumberCalc
                     }
                 }
             }
-
+        
             return factors;
         }
-        
-        static ulong GetNextPrime(ulong n)
+
+        public static ulong GetNextPrime(ulong n)
         {
 	        do
 	        {
