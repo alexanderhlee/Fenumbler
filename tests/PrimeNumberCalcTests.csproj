@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\PrimeNumberCalc.csproj" />
+    <ProjectReference Include="..\src\Utilities\Utilities.csproj" />
   </ItemGroup>
 
 </Project>

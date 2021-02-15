@@ -1,8 +1,10 @@
 
-/src/bin/
-/src/obj/
+/src/Main/bin
+/src/Main/obj
 /.idea/
 /tests/bin/
 /tests/obj/
 .DS_Store
 /PrimeNumberCalc.sln.DotSettings.user
+/src/Utilities/bin
+/src/Utilities/obj

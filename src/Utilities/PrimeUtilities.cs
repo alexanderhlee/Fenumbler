@@ -1,13 +1,13 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("PrimeNumberCalcTests")]
-namespace PrimeNumberCalc
+namespace fenumbler.PrimeUtilties
 {
-	public static class PrimeNumberUtils
-	{ 
-		public static bool IsPrime(this ulong n)
+    public static class PrimeUtilties
+    {
+	    public static bool IsPrime(this ulong n)
 		{
 			switch (n)
 			{
@@ -140,5 +140,5 @@ namespace PrimeNumberCalc
 
 			return test - 1;
 		}
-	}
+    }
 }

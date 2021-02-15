@@ -9,15 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="tests\obj\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Remove="tests\obj\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="tests\obj\**" />
+    <ProjectReference Include="..\Utilities\Utilities.csproj" />
   </ItemGroup>
 
 </Project>

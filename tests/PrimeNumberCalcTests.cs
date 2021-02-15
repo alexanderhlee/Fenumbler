@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using fenumbler.PrimeUtilties;
 using Xunit;
 
 namespace PrimeNumberCalc.Tests
@@ -10,35 +11,35 @@ namespace PrimeNumberCalc.Tests
         [Fact]
         public void OneIsNotAPrimeNumber()
         {
-            var actual = PrimeNumberUtils.IsPrime(1);
+            var actual = PrimeUtilties.IsPrime(1);
             Assert.False(actual);
         }
         
         [Fact]
         public void TwoIsAPrimeNumber()
         {
-            var actual = PrimeNumberUtils.IsPrime(2);
+            var actual = PrimeUtilties.IsPrime(2);
             Assert.True(actual);
         }
         
         [Fact]
         public void OneHundredIsNotAPrimeNumber()
         {
-            var actual = PrimeNumberUtils.IsPrime(100);
+            var actual = PrimeUtilties.IsPrime(100);
             Assert.False(actual);
         }
         
         [Fact]
         public void FortyNineIsNotAPrimeNumber()
         {
-            var actual = PrimeNumberUtils.IsPrime(49);
+            var actual = PrimeUtilties.IsPrime(49);
             Assert.False(actual);
         }
 
         [Fact]
         public void HundredthPrimeNumberIs541()
         {
-            var actual = PrimeNumberUtils.GetFirstNPrimes(100);
+            var actual = PrimeUtilties.GetFirstNPrimes(100);
             ulong expected = 541;
             Assert.Equal(expected, actual.Last());
         }
@@ -46,7 +47,7 @@ namespace PrimeNumberCalc.Tests
         [Fact]
         public void VsaucePrime()
         {
-            var actual = PrimeNumberUtils.GetFirstNPrimes(3336);
+            var actual = PrimeUtilties.GetFirstNPrimes(3336);
             ulong expected = 30941;
             Assert.Equal(expected, actual.Last());
         }
@@ -60,7 +61,7 @@ namespace PrimeNumberCalc.Tests
         [InlineData(49, 53)]
         public void GetNextPrimeReturnsCorrectValue(ulong input, ulong expected)
         {
-            var actual = PrimeNumberUtils.GetNextPrime(input);
+            var actual = PrimeUtilties.GetNextPrime(input);
             Assert.Equal(expected, actual);
         }
         
@@ -73,7 +74,7 @@ namespace PrimeNumberCalc.Tests
                 {5, 1}
             };
 
-            var actual = PrimeNumberUtils.GetPrimeFactorization(10);
+            var actual = PrimeUtilties.GetPrimeFactorization(10);
             
             Assert.Equal(expected, actual);
         }
@@ -86,7 +87,7 @@ namespace PrimeNumberCalc.Tests
                 {11, 1}
             };
 
-            var actual = PrimeNumberUtils.GetPrimeFactorization(11);
+            var actual = PrimeUtilties.GetPrimeFactorization(11);
             
             Assert.Equal(expected, actual);
         }
@@ -99,7 +100,7 @@ namespace PrimeNumberCalc.Tests
                 {5, 2}
             };
 
-            var actual = PrimeNumberUtils.GetPrimeFactorization(25);
+            var actual = PrimeUtilties.GetPrimeFactorization(25);
             
             Assert.Equal(expected, actual);
         }
@@ -114,7 +115,7 @@ namespace PrimeNumberCalc.Tests
                 {5, 1}
             };
 
-            var actual = PrimeNumberUtils.GetPrimeFactorization(30);
+            var actual = PrimeUtilties.GetPrimeFactorization(30);
             
             Assert.Equal(expected, actual);
         }
@@ -128,7 +129,7 @@ namespace PrimeNumberCalc.Tests
                 {5, 3}
             };
 
-            var actual = PrimeNumberUtils.GetPrimeFactorization(250);
+            var actual = PrimeUtilties.GetPrimeFactorization(250);
             
             Assert.Equal(expected, actual);
         }
@@ -141,7 +142,7 @@ namespace PrimeNumberCalc.Tests
                 {2, 8}
             };
 
-            var actual = PrimeNumberUtils.GetPrimeFactorization(256);
+            var actual = PrimeUtilties.GetPrimeFactorization(256);
             
             Assert.Equal(expected, actual);
         }
@@ -157,7 +158,7 @@ namespace PrimeNumberCalc.Tests
                 {7, 1}
             };
 
-            var actual = PrimeNumberUtils.GetPrimeFactorization(420);
+            var actual = PrimeUtilties.GetPrimeFactorization(420);
             
             Assert.Equal(expected, actual);
         }
@@ -171,7 +172,7 @@ namespace PrimeNumberCalc.Tests
                 {37, 1}
             };
 
-            var actual = PrimeNumberUtils.GetPrimeFactorization(999);
+            var actual = PrimeUtilties.GetPrimeFactorization(999);
             
             Assert.Equal(expected, actual);
         }
@@ -186,7 +187,7 @@ namespace PrimeNumberCalc.Tests
                 {11, 1}
             };
 
-            var actual = PrimeNumberUtils.GetPrimeFactorization(7546);
+            var actual = PrimeUtilties.GetPrimeFactorization(7546);
             
             Assert.Equal(expected, actual);
         }
@@ -200,7 +201,7 @@ namespace PrimeNumberCalc.Tests
                 {101, 1}
             };
 
-            var actual = PrimeNumberUtils.GetPrimeFactorization(34643);
+            var actual = PrimeUtilties.GetPrimeFactorization(34643);
             
             Assert.Equal(expected, actual);
         }
@@ -219,7 +220,7 @@ namespace PrimeNumberCalc.Tests
                 {27961, 1}
             };
 
-            var actual = PrimeNumberUtils.GetPrimeFactorization(11111111111111111111);
+            var actual = PrimeUtilties.GetPrimeFactorization(11111111111111111111);
             
             Assert.Equal(expected, actual);
         }

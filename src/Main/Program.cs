@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using fenumbler.PrimeUtilties;
 
 namespace PrimeNumberCalc
 {
@@ -29,14 +30,14 @@ namespace PrimeNumberCalc
                             break;
                         case "-count":
                             var i = 0;
-                            foreach (var prime in PrimeNumberUtils.GetFirstNPrimes(result))
+                            foreach (var prime in PrimeUtilties.GetFirstNPrimes(result))
                             {
                                 Console.WriteLine($"{++i}: {prime}");
                             }
                             break;
                         case "-mersenne":
                             var j = 0;
-                            foreach (var mersenne in PrimeNumberUtils.GetFirstNMersennes(result))
+                            foreach (var mersenne in PrimeUtilties.GetFirstNMersennes(result))
                             {
                                 Console.WriteLine($"{++j}: {mersenne}");
                             }
@@ -71,7 +72,7 @@ namespace PrimeNumberCalc
 
                 if (!isPrime)
                 {
-                    foreach (var factor in PrimeNumberUtils.GetPrimeFactorization(input))
+                    foreach (var factor in PrimeUtilties.GetPrimeFactorization(input))
                     {
                         var power = factor.Value > 1 ? $" ^ {factor.Value}" : string.Empty;
                         Console.WriteLine($" > {factor.Key}{power}");
