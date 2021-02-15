@@ -3,7 +3,7 @@
 // using System.Runtime.CompilerServices;
 //
 // [assembly: InternalsVisibleTo("PrimeNumberCalcTests")]
-// namespace PrimeNumberCalc
+// namespace Fenumbler
 // {
 // 	public static class PrimeNumberUtils
 // 	{ 

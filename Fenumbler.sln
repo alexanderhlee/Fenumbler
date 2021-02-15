@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D59C0D1D-14C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{6EEED8C7-1B06-4BBB-BA2C-97A68EBAFD80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeNumberCalc", "src\Main\PrimeNumberCalc.csproj", "{10B54DC6-B349-4F49-839E-9F99478012FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenumbler", "src\Main\Fenumbler.csproj", "{10B54DC6-B349-4F49-839E-9F99478012FD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeNumberCalcTests", "tests\PrimeNumberCalcTests.csproj", "{4958F442-D023-4D89-A5B5-21E2371C5DCC}"
 EndProject
