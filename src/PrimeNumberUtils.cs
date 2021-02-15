@@ -21,7 +21,7 @@ namespace PrimeNumberCalc
 				return false;
 			}
 
-			for (uint i = 7; i < Math.Sqrt(n); i += 2)
+			for (uint i = 7; i <= Math.Sqrt(n); i += 2)
 			{
 				if (n % i == 0)
 				{
