@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("PrimeNumberCalcTests")]
 namespace PrimeNumberCalc
 {
 	public static class PrimeNumberUtils
@@ -35,21 +36,7 @@ namespace PrimeNumberCalc
 		
 		public static bool IsMersenneNumber(this ulong n)
 		{
-			ulong test = 2;
-			for (var i = 0; i < 63; i++)
-			{
-				test *= 2;
-				if (n == test - 1)
-				{
-					return true;
-				}
-
-				if (n <= test)
-				{
-					return false;
-				}
-			}
-			return false;
+			return n == GetNextMersenne(n - 1);
 		}
 
 		public static IEnumerable<KeyValuePair<ulong, uint>> GetPrimeFactorization(ulong input)
@@ -123,22 +110,35 @@ namespace PrimeNumberCalc
 			}
 		}
 
-		private static ulong GetNextPrime(ulong n)
+		internal static ulong GetNextPrime(ulong n)
 		{
+			if (n <= 1)
+			{
+				return 2;
+			}
+			
+			if (n % 2 == 0)
+			{
+				n--;
+			}
+			
 			do
 			{
-				n++;
+				n += 2;
 			} while (!n.IsPrime());
+			
 			return n;
 		}
 		
 		private static ulong GetNextMersenne(ulong n)
 		{
+			ulong test = 2;
 			do
 			{
-				n++;
-			} while (!n.IsMersenneNumber());
-			return n;
+				test *= 2;
+			} while (n >= test - 1);
+
+			return test - 1;
 		}
 	}
 }

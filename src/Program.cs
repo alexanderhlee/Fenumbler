@@ -63,8 +63,11 @@ namespace PrimeNumberCalc
             {
                 var stopWatch = Stopwatch.StartNew();
                 bool isPrime = input.IsPrime();
-                var isPrimeStr = isPrime ? "prime" : "not prime";
-                Console.WriteLine($"{input} is {isPrimeStr}");
+                bool isMersenne = input.IsMersenneNumber();
+                
+                var isPrimeStr = (isPrime ? "is" : "is not") + " prime";
+                var isMersStr = (isMersenne ? "is" : "is not") +" a mersenne number";
+                Console.WriteLine($"{input} {isPrimeStr} and {isMersStr}.");
 
                 if (!isPrime)
                 {

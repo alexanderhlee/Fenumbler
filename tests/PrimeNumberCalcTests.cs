@@ -50,6 +50,19 @@ namespace PrimeNumberCalc.Tests
             ulong expected = 30941;
             Assert.Equal(expected, actual.Last());
         }
+
+        [Theory]
+        [InlineData(0, 2)]
+        [InlineData(1, 2)]
+        [InlineData(2, 3)]
+        [InlineData(3, 5)]
+        [InlineData(5, 7)]
+        [InlineData(49, 53)]
+        public void GetNextPrimeReturnsCorrectValue(ulong input, ulong expected)
+        {
+            var actual = PrimeNumberUtils.GetNextPrime(input);
+            Assert.Equal(expected, actual);
+        }
         
         [Fact]
         public void PF_Of_10()
@@ -223,6 +236,8 @@ namespace PrimeNumberCalc.Tests
         [InlineData(31, true)]
         [InlineData(33, false)]
         [InlineData(255, true)]
+        [InlineData(256, false)]
+        [InlineData(257, false)]
         [InlineData(ulong.MaxValue, true)]
         [InlineData(ulong.MaxValue - 1, false)]
         public void IsMersenneNumberTestIsValid(ulong test, bool expected)
