@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
-using fenumbler.PrimeUtilties;
 
-namespace PrimeNumberCalc
+namespace Fenumbler
 {
-    class Program
+    static class Program
     {
         static void Main(string[] args)
         {

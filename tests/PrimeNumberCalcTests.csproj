@@ -5,7 +5,7 @@
 
     <IsPackable>false</IsPackable>
 
-    <RootNamespace>tests</RootNamespace>
+    <RootNamespace>Fenumbler</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

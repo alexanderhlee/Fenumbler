@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using fenumbler.PrimeUtilties;
 using Xunit;
 
-namespace PrimeNumberCalc.Tests
+namespace Fenumbler
 {
     public class PrimeNumberCalcTests
     {
