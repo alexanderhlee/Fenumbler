@@ -54,7 +54,7 @@ namespace PrimeNumberCalc
             try
             {
                 var stopWatch = Stopwatch.StartNew();
-                bool isPrime = PrimeNumberUtils.IsPrime(input);
+                bool isPrime = input.IsPrime();
                 var isPrimeStr = isPrime ? "prime" : "not prime";
                 Console.WriteLine($"{input} is {isPrimeStr}");
 

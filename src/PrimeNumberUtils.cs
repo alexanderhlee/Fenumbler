@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 
 namespace PrimeNumberCalc
 {
 	public static class PrimeNumberUtils
 	{ 
-		public static bool IsPrime(ulong n)
+		public static bool IsPrime(this ulong n)
 		{
 			switch (n)
 			{
@@ -32,24 +31,24 @@ namespace PrimeNumberCalc
 			return true;
 		}
 
-		public static IEnumerable<KeyValuePair<ulong, uint>> GetPrimeFactorization(ulong n)
+		public static IEnumerable<KeyValuePair<ulong, uint>> GetPrimeFactorization(ulong input)
         {
             uint pow = 1;
-            var division = n;
-            var result = new KeyValuePair<ulong, uint>(n, 1);
-            bool done = false;
+            var test = input;
+            var result = new KeyValuePair<ulong, uint>(input, 1);
+            var done = false;
             ulong factor = 2;
 
             do
             {
-	            if (division <= 1 || IsPrime(division))
+	            if (test <= 1 || test.IsPrime())
 	            {
 		            done = true;
 		            yield return result;
 	            }
 	            else
 	            {
-		            if (division % factor != 0)
+		            if (test % factor != 0)
 		            {
 			            pow = 1;
 			            factor = GetNextPrime(factor);
@@ -59,20 +58,20 @@ namespace PrimeNumberCalc
 			            do
 			            {
 				            result = new KeyValuePair<ulong, uint>(factor, pow);
-				            division /= factor;
+				            test /= factor;
 				            pow++;
-			            } while (division % factor == 0);
+			            } while (test % factor == 0);
 
-			            if (division == 1)
+			            if (test == 1)
 			            {
 				            done = true;
 			            }
 			            else
 			            {
-				            if (IsPrime(division))
+				            if (test.IsPrime())
 				            {
 					            uint newPow = 1;
-					            if (result.Key == division)
+					            if (result.Key == test)
 					            {
 						            newPow = result.Value + 1;
 					            }
@@ -80,7 +79,7 @@ namespace PrimeNumberCalc
 					            {
 						            yield return result;
 					            }
-					            result = new KeyValuePair<ulong, uint>(division, newPow);
+					            result = new KeyValuePair<ulong, uint>(test, newPow);
 					            done = true;
 				            }
 				            else
@@ -96,16 +95,7 @@ namespace PrimeNumberCalc
             } while (!done);
         }
 
-        private static ulong GetNextPrime(ulong n)
-        {
-	        do
-	        {
-		        n++;
-	        } while (!IsPrime(n));
-	        return n;
-        }
-
-        public static IEnumerable<ulong> GetFirstNPrimes(ulong count)
+		public static IEnumerable<ulong> GetFirstNPrimes(ulong count)
         {
 	        ulong nextPrime = 1;
 	        for (ulong i = 1; i <= count; i++)
@@ -114,5 +104,14 @@ namespace PrimeNumberCalc
 		        yield return nextPrime;
 	        }
         }
+
+		private static ulong GetNextPrime(ulong n)
+		{
+			do
+			{
+				n++;
+			} while (!n.IsPrime());
+			return n;
+		}
 	}
 }

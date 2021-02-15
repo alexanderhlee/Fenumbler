@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using Xunit;
-using PrimeNumberCalc;
 
-namespace tests
+namespace PrimeNumberCalc.Tests
 {
     public class PrimeNumberCalcTests
     {
