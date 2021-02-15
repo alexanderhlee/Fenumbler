@@ -43,6 +43,14 @@ namespace PrimeNumberCalc.Tests
         }
         
         [Fact]
+        public void VsaucePrime()
+        {
+            var actual = PrimeNumberUtils.GetFirstNPrimes(3336);
+            ulong expected = 30941;
+            Assert.Equal(expected, actual.Last());
+        }
+        
+        [Fact]
         public void PF_Of_10()
         {
             var expected = new Dictionary<ulong, uint>
@@ -168,5 +176,25 @@ namespace PrimeNumberCalc.Tests
             
             Assert.Equal(expected, actual);
         }
+        
+        [Fact]
+        public void PF_Of_11111111111111111111()
+        {
+            var expected = new Dictionary<ulong, uint>
+            {
+                {11, 1},
+                {41, 1},
+                {101, 1},
+                {271, 1},
+                {3541, 1},
+                {9091, 1},
+                {27961, 1}
+            };
+
+            var actual = PrimeNumberUtils.GetPrimeFactorization(11111111111111111111);
+            
+            Assert.Equal(expected, actual);
+        }
+
     }
 }

@@ -46,7 +46,7 @@ namespace PrimeNumberCalc
 	            yield return result;
             }
 
-            do
+            while (!done)
             {
 	            if (test % factor != 0)
 	            {
@@ -88,7 +88,7 @@ namespace PrimeNumberCalc
 	            
 		            yield return result;
 	            }
-            } while (!done);
+            }
         }
 
 		public static IEnumerable<ulong> GetFirstNPrimes(ulong count)
