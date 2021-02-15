@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
@@ -210,5 +211,24 @@ namespace PrimeNumberCalc.Tests
             Assert.Equal(expected, actual);
         }
 
+        [Theory]
+        [InlineData(1, false)]
+        [InlineData(2, false)]
+        [InlineData(3, true)]
+        [InlineData(4, false)]
+        [InlineData(7, true)]
+        [InlineData(15, true)]
+        [InlineData(16, false)]
+        [InlineData(22, false)]
+        [InlineData(31, true)]
+        [InlineData(33, false)]
+        [InlineData(255, true)]
+        [InlineData(ulong.MaxValue, true)]
+        [InlineData(ulong.MaxValue - 1, false)]
+        public void IsMersenneNumberTestIsValid(ulong test, bool expected)
+        {
+            var actual = test.IsMersenneNumber();
+            Assert.Equal(expected, actual);
+        }
     }
 }

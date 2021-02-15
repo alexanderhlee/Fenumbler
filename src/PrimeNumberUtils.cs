@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PrimeNumberCalc
 {
@@ -30,6 +31,25 @@ namespace PrimeNumberCalc
 			}
 
 			return true;
+		}
+		
+		public static bool IsMersenneNumber(this ulong n)
+		{
+			ulong test = 2;
+			for (var i = 0; i < 63; i++)
+			{
+				test *= 2;
+				if (n == test - 1)
+				{
+					return true;
+				}
+
+				if (n <= test)
+				{
+					return false;
+				}
+			}
+			return false;
 		}
 
 		public static IEnumerable<KeyValuePair<ulong, uint>> GetPrimeFactorization(ulong input)
@@ -92,6 +112,16 @@ namespace PrimeNumberCalc
 		        yield return nextPrime;
 	        }
         }
+		
+		public static IEnumerable<ulong> GetFirstNMersennes(ulong count)
+		{
+			ulong nextMersenne = 1;
+			for (ulong i = 1; i <= count; i++)
+			{
+				nextMersenne = GetNextMersenne(nextMersenne);
+				yield return nextMersenne;
+			}
+		}
 
 		private static ulong GetNextPrime(ulong n)
 		{
@@ -99,6 +129,15 @@ namespace PrimeNumberCalc
 			{
 				n++;
 			} while (!n.IsPrime());
+			return n;
+		}
+		
+		private static ulong GetNextMersenne(ulong n)
+		{
+			do
+			{
+				n++;
+			} while (!n.IsMersenneNumber());
 			return n;
 		}
 	}

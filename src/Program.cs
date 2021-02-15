@@ -34,6 +34,13 @@ namespace PrimeNumberCalc
                                 Console.WriteLine($"{++i}: {prime}");
                             }
                             break;
+                        case "-mersenne":
+                            var j = 0;
+                            foreach (var mersenne in PrimeNumberUtils.GetFirstNMersennes(result))
+                            {
+                                Console.WriteLine($"{++j}: {mersenne}");
+                            }
+                            break;
                         default:
                             ShowUsage();
                             break;
@@ -47,6 +54,7 @@ namespace PrimeNumberCalc
             Console.WriteLine("PrimeCalc:");
             Console.WriteLine(" Usage: [-isprime X] to check whether X is prime.");
             Console.WriteLine("     or [-count N] to return a count of the first N primes.");
+            Console.WriteLine("     or [-mersenne N] to return a count of the first N mersenne numbers.");
         }
 
         private static void ShowPrimeFacts(ulong input)
