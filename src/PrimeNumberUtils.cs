@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace PrimeNumberCalc
@@ -20,7 +21,7 @@ namespace PrimeNumberCalc
 				return false;
 			}
 
-			for (uint i = 7; i < (n / 2); i += 2)
+			for (uint i = 7; i < Math.Sqrt(n); i += 2)
 			{
 				if (n % i == 0)
 				{
