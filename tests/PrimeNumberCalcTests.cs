@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace PrimeNumberCalc.Tests
@@ -27,6 +28,21 @@ namespace PrimeNumberCalc.Tests
         }
         
         [Fact]
+        public void FortyNineIsNotAPrimeNumber()
+        {
+            var actual = PrimeNumberUtils.IsPrime(49);
+            Assert.False(actual);
+        }
+
+        [Fact]
+        public void HundredthPrimeNumberIs541()
+        {
+            var actual = PrimeNumberUtils.GetFirstNPrimes(100);
+            ulong expected = 541;
+            Assert.Equal(expected, actual.Last());
+        }
+        
+        [Fact]
         public void PF_Of_10()
         {
             var expected = new Dictionary<ulong, uint>
@@ -36,6 +52,19 @@ namespace PrimeNumberCalc.Tests
             };
 
             var actual = PrimeNumberUtils.GetPrimeFactorization(10);
+            
+            Assert.Equal(expected, actual);
+        }
+        
+        [Fact]
+        public void PF_Of_11()
+        {
+            var expected = new Dictionary<ulong, uint>
+            {
+                {11, 1}
+            };
+
+            var actual = PrimeNumberUtils.GetPrimeFactorization(11);
             
             Assert.Equal(expected, actual);
         }
@@ -107,6 +136,35 @@ namespace PrimeNumberCalc.Tests
             };
 
             var actual = PrimeNumberUtils.GetPrimeFactorization(999);
+            
+            Assert.Equal(expected, actual);
+        }
+        
+        [Fact]
+        public void PF_Of_7546()
+        {
+            var expected = new Dictionary<ulong, uint>
+            {
+                {2, 1},
+                {7, 3},
+                {11, 1}
+            };
+
+            var actual = PrimeNumberUtils.GetPrimeFactorization(7546);
+            
+            Assert.Equal(expected, actual);
+        }
+        
+        [Fact]
+        public void PF_Of_34643()
+        {
+            var expected = new Dictionary<ulong, uint>
+            {
+                {7, 3},
+                {101, 1}
+            };
+
+            var actual = PrimeNumberUtils.GetPrimeFactorization(34643);
             
             Assert.Equal(expected, actual);
         }

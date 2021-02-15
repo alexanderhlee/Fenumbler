@@ -39,59 +39,54 @@ namespace PrimeNumberCalc
             var result = new KeyValuePair<ulong, uint>(input, 1);
             var done = false;
             ulong factor = 2;
+            
+            if (test <= 1 || test.IsPrime())
+            {
+	            done = true;
+	            yield return result;
+            }
 
             do
             {
-	            if (test <= 1 || test.IsPrime())
+	            if (test % factor != 0)
 	            {
-		            done = true;
-		            yield return result;
+		            pow = 1;
+		            factor = GetNextPrime(factor);
 	            }
 	            else
 	            {
-		            if (test % factor != 0)
+		            do
+		            {
+			            result = new KeyValuePair<ulong, uint>(factor, pow);
+			            test /= factor;
+			            pow++;
+		            } while (test % factor == 0);
+
+		            var isPrime = test.IsPrime();
+		            if (test == 1 || isPrime)
+		            {
+			            done = true;
+			            if (isPrime)
+			            {
+				            uint newPow = 1;
+				            if (result.Key == test)
+				            {
+					            newPow = result.Value + 1;
+				            }
+				            else
+				            {
+					            yield return result;
+				            }
+				            result = new KeyValuePair<ulong, uint>(test, newPow);
+			            }
+		            }
+		            else
 		            {
 			            pow = 1;
 			            factor = GetNextPrime(factor);
 		            }
-		            else
-		            {
-			            do
-			            {
-				            result = new KeyValuePair<ulong, uint>(factor, pow);
-				            test /= factor;
-				            pow++;
-			            } while (test % factor == 0);
-
-			            if (test == 1)
-			            {
-				            done = true;
-			            }
-			            else
-			            {
-				            if (test.IsPrime())
-				            {
-					            uint newPow = 1;
-					            if (result.Key == test)
-					            {
-						            newPow = result.Value + 1;
-					            }
-					            else
-					            {
-						            yield return result;
-					            }
-					            result = new KeyValuePair<ulong, uint>(test, newPow);
-					            done = true;
-				            }
-				            else
-				            {
-					            pow = 1;
-					            factor = GetNextPrime(factor);
-				            }
-			            }
-
-			            yield return result;
-		            }
+	            
+		            yield return result;
 	            }
             } while (!done);
         }
