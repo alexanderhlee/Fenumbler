@@ -106,6 +106,20 @@ namespace PrimeNumberCalc.Tests
         }
         
         [Fact]
+        public void PF_Of_250()
+        {
+            var expected = new Dictionary<ulong, uint>
+            {
+                {2, 1},
+                {5, 3}
+            };
+
+            var actual = PrimeNumberUtils.GetPrimeFactorization(250);
+            
+            Assert.Equal(expected, actual);
+        }
+        
+        [Fact]
         public void PF_Of_256()
         {
             var expected = new Dictionary<ulong, uint>

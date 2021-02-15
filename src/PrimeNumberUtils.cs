@@ -61,32 +61,24 @@ namespace PrimeNumberCalc
 			            test /= factor;
 			            pow++;
 		            } while (test % factor == 0);
+		            
+		            yield return result;
 
-		            var isPrime = test.IsPrime();
-		            if (test == 1 || isPrime)
+		            if (test == 1)
 		            {
 			            done = true;
-			            if (isPrime)
-			            {
-				            uint newPow = 1;
-				            if (result.Key == test)
-				            {
-					            newPow = result.Value + 1;
-				            }
-				            else
-				            {
-					            yield return result;
-				            }
-				            result = new KeyValuePair<ulong, uint>(test, newPow);
-			            }
+		            }
+		            else if (test.IsPrime())
+		            {
+			            done = true;
+			            result = new KeyValuePair<ulong, uint>(test, 1);
+			            yield return result;
 		            }
 		            else
 		            {
 			            pow = 1;
 			            factor = GetNextPrime(factor);
 		            }
-	            
-		            yield return result;
 	            }
             }
         }
