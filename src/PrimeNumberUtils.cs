@@ -5,13 +5,9 @@ namespace PrimeNumberCalc
 {
 	public static class PrimeNumberUtils
 	{ 
-		public static bool IsPrime(ulong numberToTest)
+		public static bool IsPrime(ulong n)
 		{
-			if (numberToTest <= 1)
-			{
-				throw new ArgumentOutOfRangeException(paramName: nameof(numberToTest), message: "Integers less than 2 are invalid for prime test.");
-			}
-			switch (numberToTest)
+			switch (n)
 			{
 				case 2:
 				case 3:
@@ -20,14 +16,14 @@ namespace PrimeNumberCalc
 					return true;
 			}
 
-			if (numberToTest % 2 == 0 || numberToTest % 3 == 0 || numberToTest % 5 == 0)
+			if (n <= 1 || n % 2 == 0 || n % 3 == 0 || n % 5 == 0)
 			{
 				return false;
 			}
 
-			for (uint i = 7; i < (numberToTest / 2); i += 2)
+			for (uint i = 7; i < (n / 2); i += 2)
 			{
-				if (numberToTest % i == 0)
+				if (n % i == 0)
 				{
 					return false;
 				}
@@ -36,63 +32,87 @@ namespace PrimeNumberCalc
 			return true;
 		}
 
-        public static Dictionary<ulong, uint> GetPrimeFactorization(ulong n)
+		public static IEnumerable<KeyValuePair<ulong, uint>> GetPrimeFactorization(ulong n)
         {
-            var factors = new Dictionary<ulong, uint>();
-        
-            if (IsPrime(n))
+            uint pow = 1;
+            var division = n;
+            var result = new KeyValuePair<ulong, uint>(n, 1);
+            bool done = false;
+            ulong factor = 2;
+
+            do
             {
-                factors.Add(n, 1);
-            }
-            else
-            {
-                ulong factor = 2;
-                var result = n;
-                uint pow = 1;
-        
-                while (true)
-                {
-                    if (result % factor == 0)
-                    {
-                        result /= factor;
-                        if (!factors.TryAdd(factor, pow))
-                        {
-                            factors[factor] = pow;
-                        }
-        
-                        if (IsPrime(result))
-                        {
-                            if (!factors.ContainsKey(result))
-                            {
-                                factors.Add(result, 1);
-                            }
-                            else
-                            {
-                                factors[result] = factors.GetValueOrDefault(result) + 1;
-                            }
-                            break;
-                        }
-        
-                        pow++;
-                    }
-                    else
-                    {
-                        pow = 1;
-                        factor = GetNextPrime(factor);
-                    }
-                }
-            }
-        
-            return factors;
+	            if (division <= 1 || IsPrime(division))
+	            {
+		            done = true;
+		            yield return result;
+	            }
+	            else
+	            {
+		            if (division % factor != 0)
+		            {
+			            pow = 1;
+			            factor = GetNextPrime(factor);
+		            }
+		            else
+		            {
+			            do
+			            {
+				            result = new KeyValuePair<ulong, uint>(factor, pow);
+				            division /= factor;
+				            pow++;
+			            } while (division % factor == 0);
+
+			            if (division == 1)
+			            {
+				            done = true;
+			            }
+			            else
+			            {
+				            if (IsPrime(division))
+				            {
+					            uint newPow = 1;
+					            if (result.Key == division)
+					            {
+						            newPow = result.Value + 1;
+					            }
+					            else
+					            {
+						            yield return result;
+					            }
+					            result = new KeyValuePair<ulong, uint>(division, newPow);
+					            done = true;
+				            }
+				            else
+				            {
+					            pow = 1;
+					            factor = GetNextPrime(factor);
+				            }
+			            }
+
+			            yield return result;
+		            }
+	            }
+            } while (!done);
         }
 
-        public static ulong GetNextPrime(ulong n)
+        private static ulong GetNextPrime(ulong n)
         {
 	        do
 	        {
 		        n++;
 	        } while (!IsPrime(n));
 	        return n;
+        }
+
+        public static IEnumerable<ulong> GetFirstNPrimes(ulong count)
+        {
+	        ulong nextPrime = 1;
+	        for (ulong i = 1; i <= count; i++)
+	        {
+		        nextPrime = GetNextPrime(nextPrime);
+		        yield return nextPrime;
+	        }
         }
 	}
 }

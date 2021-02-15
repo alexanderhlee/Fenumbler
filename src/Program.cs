@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Linq;
 
 namespace PrimeNumberCalc
 {
@@ -17,9 +16,9 @@ namespace PrimeNumberCalc
                 var command = args[0];
                 var input = args[1];
 
-                if (!uint.TryParse(input, out var result))
+                if (!ulong.TryParse(input, out var result))
                 {
-                    Console.WriteLine("PrimeCalc: Only positive 32-bit integers are valid for the second argument.");
+                    Console.WriteLine("PrimeCalc: Only positive 64-bit integers are valid for the second argument.");
                 }
                 else
                 {
@@ -29,11 +28,10 @@ namespace PrimeNumberCalc
                             ShowPrimeFacts(result);
                             break;
                         case "-count":
-                            ulong nextPrime = 1;
-                            for (int i = 1; i <= result; i++)
+                            var i = 0;
+                            foreach (var prime in PrimeNumberUtils.GetFirstNPrimes(result))
                             {
-                                nextPrime = PrimeNumberUtils.GetNextPrime(nextPrime);
-                                Console.WriteLine($"{i}: {nextPrime}");
+                                Console.WriteLine($"{++i}: {prime}");
                             }
                             break;
                         default:
@@ -51,7 +49,7 @@ namespace PrimeNumberCalc
             Console.WriteLine("     or [-count N] to return a count of the first N primes.");
         }
 
-        private static void ShowPrimeFacts(uint input)
+        private static void ShowPrimeFacts(ulong input)
         {
             try
             {
@@ -62,9 +60,7 @@ namespace PrimeNumberCalc
 
                 if (!isPrime)
                 {
-                    var factors = PrimeNumberUtils.GetPrimeFactorization(input);
-
-                    foreach (var factor in factors)
+                    foreach (var factor in PrimeNumberUtils.GetPrimeFactorization(input))
                     {
                         var power = factor.Value > 1 ? $" ^ {factor.Value}" : string.Empty;
                         Console.WriteLine($" > {factor.Key}{power}");
@@ -74,11 +70,11 @@ namespace PrimeNumberCalc
                 stopWatch.Stop();
                 if (stopWatch.ElapsedMilliseconds < 1000)
                 {
-                    Console.WriteLine("Calculation took less than a second");
+                    Console.WriteLine("Calculation took less than a second.");
                 }
                 else
                 {
-                    Console.WriteLine($"Calculation took about {stopWatch.ElapsedMilliseconds / 1000} seconds");
+                    Console.WriteLine($"Calculation took about {stopWatch.ElapsedMilliseconds / 1000} seconds.");
                 }
             }
             catch(Exception e)
