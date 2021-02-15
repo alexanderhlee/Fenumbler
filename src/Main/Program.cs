@@ -18,7 +18,7 @@ namespace Fenumbler
 
                 if (!ulong.TryParse(input, out var result))
                 {
-                    Console.WriteLine("PrimeCalc: Only positive 64-bit integers are valid for the second argument.");
+                    Console.WriteLine("Fenumbler: Only positive 64-bit integers are valid for the second argument.");
                 }
                 else
                 {
@@ -51,7 +51,7 @@ namespace Fenumbler
 
         private static void ShowUsage()
         {
-            Console.WriteLine("PrimeCalc:");
+            Console.WriteLine("Fenumbler:");
             Console.WriteLine(" Usage: [-isprime X] to check whether X is prime.");
             Console.WriteLine("     or [-count N] to return a count of the first N primes.");
             Console.WriteLine("     or [-mersenne N] to return a count of the first N mersenne numbers.");

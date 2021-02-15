@@ -36,7 +36,7 @@ namespace Fenumbler
 		
 		public static bool IsMersenneNumber(this ulong n)
 		{
-			return n == GetNextMersenne(n - 1);
+			return n != 0 && n == GetNextMersenne(n - 1);
 		}
 
 		public static IEnumerable<KeyValuePair<ulong, uint>> GetPrimeFactorization(ulong input)
@@ -103,7 +103,7 @@ namespace Fenumbler
 		public static IEnumerable<ulong> GetFirstNMersennes(ulong count)
 		{
 			ulong nextMersenne = 1;
-			for (ulong i = 1; i <= count; i++)
+			for (ulong i = 1; i <= count && i <= 63; i++)
 			{
 				nextMersenne = GetNextMersenne(nextMersenne);
 				yield return nextMersenne;
