@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Globalization;
+using Spectre.Console;
 
 namespace Fenumbler
 {
@@ -51,6 +53,10 @@ namespace Fenumbler
 
         private static void ShowUsage()
         {
+            AnsiConsole.Render(
+                new FigletText("Fenumbler")
+                    .LeftAligned()
+                    .Color(Color.Blue1));
             Console.WriteLine("Fenumbler:");
             Console.WriteLine(" Usage: [-isprime X] to check whether X is prime.");
             Console.WriteLine("     or [-count N] to return a count of the first N primes.");
@@ -61,13 +67,25 @@ namespace Fenumbler
         {
             try
             {
+                var nfi = new CultureInfo( "en-US", false ).NumberFormat;
+                nfi.NumberDecimalDigits = 0;
+                var table = new Table()
+                    .AddColumn($"[bold green3]{input.ToString("N", nfi)}[/]")
+                    .AddColumn("Prime")
+                    .AddColumn("Mersenne");
+                
+
                 var stopWatch = Stopwatch.StartNew();
                 bool isPrime = input.IsPrime();
                 bool isMersenne = input.IsMersenneNumber();
                 
-                var isPrimeStr = (isPrime ? "is" : "is not") + " prime";
-                var isMersStr = (isMersenne ? "is" : "is not") +" a mersenne number";
-                Console.WriteLine($"{input} {isPrimeStr} and {isMersStr}.");
+                var isPrimeStr = isPrime ? ":check_mark_button:" : ":cross_mark:";
+                var isMersStr = isMersenne ? ":check_mark_button:" : ":cross_mark:";
+                //Console.WriteLine($"{input} {isPrimeStr} and {isMersStr}.");
+
+                table.AddRow("", $"{isPrimeStr}", $"{isMersStr}");
+                
+                AnsiConsole.Render(table);
 
                 if (!isPrime)
                 {
